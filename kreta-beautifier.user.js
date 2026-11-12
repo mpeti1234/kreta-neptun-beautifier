@@ -69,6 +69,30 @@
             transform: scale(1.05);
         }
     `;
+    document.head.appendChild(style);
+
+    // 2. dark mode toggle button & memory (localStorage)
+    function setupDarkMode () {
+        // check if the user previously turned on dark mode
+        const isDark = localStorage.getItem('kretaDarkMode') === 'true';
+        if (isDark) {
+            document.documentElement.classList.add ('kreta-dark-mode');
+        }
+
+        const btn = document.createElement('button');
+        btn.id = 'kretaa-dark-toggle';
+        btn.className = 'kreta-keep-color';
+        btn.innerText = isDark ? 'Light Mode' : 'Dark Mode';
+
+        btn.addEventListener('click', () => {
+            const enabled = document.documentElement.classList.toggle('kreta-dark-mode');
+            localStorage.setItem('kretaDarkMode', enabled);
+            btn.innerText = enabled ? 'Light Mode' : 'Dark Mode';
+        })
+
+        document.body.appendChild(btn);
+    }
+
     
 }
 )
