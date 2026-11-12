@@ -143,9 +143,18 @@
     }
 
 
-    
+    // initalize the button when the page loads
+    setupDarkMode();
+    enhancerGradesAndAverages();
 
+    // 4. whatch for page updates (dynamic SPA navigation in Kreta)
+    const observer = new MutationObserver(() => {
+        enhancerGradesAndAverages();
+    });
 
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    })
 
-
-})
+})();
