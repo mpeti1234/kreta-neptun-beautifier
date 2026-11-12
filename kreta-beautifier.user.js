@@ -93,6 +93,36 @@
         document.body.appendChild(btn);
     }
 
-    
+
+
+    // 3. color-code grades and highlight averages
+    function enhancerGradesAndAverages() {
+        // select all table cells and spans on the page
+        const elements = document.querySelectorAll('td, span');
+
+        elements.forEach((el) => {
+            // skip element we already styled so we don't loop indinitedly
+            if (el.dataset.kretaStyled === 'true') return;
+
+            // only check elements that have no child elements (pure text)
+            if (el.children.length > 0) return;
+
+            const text = el.innerText.trim();
+
+            // A) chack for averages (Hungarian format like "2,75" or "4,50")
+            if (/^[1-5],[0-9]{2}$/.test(text)) {
+                const numericAvg = parseFloat(text.replace(',', '.'));
+
+                if (numericAvg < 3.0) {
+                    el.classList.add ('kreta-warning-avg', 'kreta-keep-color');
+                    el.title = 'Warning: Average is below 3.0! Focus needed';
+                } else if (numericAvg >= 4.5) {
+                    el.classList.add('kreta-good-avg', 'kreta-keep-color');
+                }
+                el.classList.kretaStyled = 'true';
+            }
+            
+        })
+    }
 }
 )
