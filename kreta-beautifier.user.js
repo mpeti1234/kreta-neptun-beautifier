@@ -4,7 +4,8 @@
 // @version 1.0
 // @description Adds Dark Mode, color-coded grades, and highlights low subject averagers in e-Kreta
 // @author mpeti1234
-// @metch https://*.e-kreta.hu/*
+// @match https://*.e-kreta.hu/*
+// @match https://*neptun*/*
 // @grant none
 // ==/UserScript==
 
