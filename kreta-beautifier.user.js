@@ -121,8 +121,31 @@
                 }
                 el.classList.kretaStyled = 'true';
             }
-            
-        })
+
+
+            // B) check for Single Grades ("1", "2", "3", "4", "5") inside table cells
+            if (el.tagName === 'TD' && /^[1-5]$/.test(text)) {
+                const gradeColors = {
+                    '5': {bg: '#28a745', color: 'fff'}, //green
+                    '4': {bg: '#17a2b8', color: 'fff'}, //Blue-Teal
+                    '3': {bg: '#ffc107', color: '000'}, //Yellow
+                    '2': {bg: '#fd7e14', color: 'fff'}, //Orange
+                    '1': {bg: '#dc3545', color: 'fff'}, //Red
+                };
+
+                const styleInfo = gradeColors[text];
+                if (styleInfo) {
+                    el.innerHTML = `<span class="kreta-badge kreta-keep-color" style="background-color: ${styleInfo.bg}; color: ${styleInfo.color};">${text}</span>`;
+                    el.dataset.kretaStyled = 'true';
+                }
+            }
+        });
     }
-}
-)
+
+
+    
+
+
+
+
+})
